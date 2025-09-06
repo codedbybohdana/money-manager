@@ -19,7 +19,6 @@ import {
 export type ScreenWrapperProps = {
   style?: ViewStyle;
   children: React.ReactNode;
-  bg?: string;
 };
 export type ModalWrapperProps = {
   style?: ViewStyle;
