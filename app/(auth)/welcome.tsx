@@ -19,7 +19,7 @@ const WelcomePage = () => {
             onPress={() => router.push("/(auth)/login")}
             style={styles.loginButton}
           >
-            <Typo size={20} fontWeight={"500"}>
+            <Typo size={20} fontWeight={"700"}>
               Sign in
             </Typo>
           </TouchableOpacity>
@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
   },
   loginButton: {
     alignSelf: "flex-end",
-    marginRight: spacingX._40,
+    marginRight: spacingX._20,
     paddingTop: spacingY._5,
   },
   footer: {

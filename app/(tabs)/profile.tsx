@@ -80,9 +80,9 @@ const Profile = () => {
               contentFit="cover"
               transition={100}
             />
-            <TouchableOpacity style={styles.editIcon}>
+            {/* <TouchableOpacity style={styles.editIcon}>
               <Icons.PencilIcon size={vertical(25)} color={colors.neutral500} />
-            </TouchableOpacity>
+            </TouchableOpacity> */}
           </View>
 
           {/* name email */}
