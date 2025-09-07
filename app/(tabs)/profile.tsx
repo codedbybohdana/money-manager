@@ -1,0 +1,191 @@
+import ScreenWrapper from "@/components/ScreenWrapper";
+import Typo from "@/components/Typo";
+import { auth } from "@/config/firebase";
+import { colors, radius, spacingX, spacingY } from "@/constants/theme";
+import { useAuth } from "@/contexts/authContext";
+import { getProfileImage } from "@/services/imageService";
+import { accountOptionType } from "@/types";
+import { vertical } from "@/utils/styling";
+import { Image } from "expo-image";
+import { useRouter } from "expo-router";
+import { signOut } from "firebase/auth";
+import * as Icons from "phosphor-react-native";
+import React from "react";
+import { Alert, StyleSheet, TouchableOpacity, View } from "react-native";
+
+const Profile = () => {
+  const { user } = useAuth();
+  const router = useRouter();
+
+  const accountOptions: accountOptionType[] = [
+    {
+      title: "Edit Profile",
+      icon: (
+        <Icons.UserIcon
+          size={vertical(26)}
+          color={colors.white}
+          weight="fill"
+        />
+      ),
+      routeName: "/(modals)/profileModal",
+      bgColor: "#62cbff",
+    },
+    {
+      title: "Logout",
+      icon: (
+        <Icons.PowerIcon
+          size={vertical(26)}
+          color={colors.white}
+          weight="fill"
+        />
+      ),
+      bgColor: "#fc7070",
+    },
+  ];
+
+  const handleLogout = async () => {
+    await signOut(auth);
+  };
+
+  const showLogoutAlert = () => {
+    Alert.alert("Confirm", "Are you sure you want to logout?", [
+      {
+        text: "Cancel",
+        onPress: () => console.log("Cancel delete"),
+        style: "cancel",
+      },
+      {
+        text: "Logout",
+        onPress: () => handleLogout(),
+        style: "destructive",
+      },
+    ]);
+  };
+
+  const handlePress = (item: accountOptionType) => {
+    if (item?.title == "Logout") {
+      showLogoutAlert();
+    }
+    if (item?.routeName) router.push(item?.routeName);
+  };
+  return (
+    <ScreenWrapper>
+      <View style={styles.container}>
+        <View style={styles.userInfo}>
+          {/* avatar */}
+          <View>
+            <Image
+              style={styles.avatar}
+              source={getProfileImage(user?.image)}
+              contentFit="cover"
+              transition={100}
+            />
+            <TouchableOpacity style={styles.editIcon}>
+              <Icons.PencilIcon size={vertical(25)} color={colors.neutral500} />
+            </TouchableOpacity>
+          </View>
+
+          {/* name email */}
+          <View style={styles.nameContainer}>
+            <Typo size={30} fontWeight={"600"} color={colors.black}>
+              {user?.name || " "}
+            </Typo>
+            <Typo size={15} color={colors.neutral500}>
+              {user?.email}
+            </Typo>
+          </View>
+        </View>
+
+        {/* account options */}
+        <View style={styles.accountOptions}>
+          {accountOptions.map((item, index) => {
+            return (
+              <View key={index.toString()} style={styles.listItem}>
+                <TouchableOpacity
+                  style={styles.flexRow}
+                  onPress={() => handlePress(item)}
+                >
+                  {/* icon */}
+                  <View
+                    style={[
+                      styles.listIcon,
+                      { backgroundColor: item?.bgColor },
+                    ]}
+                  >
+                    {item.icon && item.icon}
+                  </View>
+                  {/* title */}
+                  <Typo size={16} style={{ flex: 1 }} fontWeight={"500"}>
+                    {item.title}
+                  </Typo>
+                </TouchableOpacity>
+              </View>
+            );
+          })}
+        </View>
+      </View>
+    </ScreenWrapper>
+  );
+};
+
+export default Profile;
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    paddingHorizontal: spacingX._20,
+  },
+  userInfo: {
+    marginTop: vertical(30),
+    alignItems: "center",
+    gap: spacingY._15,
+  },
+  avatarContainer: {
+    position: "relative",
+    alignSelf: "center",
+  },
+  avatar: {
+    alignSelf: "center",
+    backgroundColor: colors.white,
+    height: vertical(135),
+    width: vertical(135),
+    borderRadius: 200,
+  },
+  editIcon: {
+    position: "absolute",
+    bottom: 5,
+    right: 8,
+    borderRadius: 50,
+    backgroundColor: colors.neutral100,
+    shadowColor: colors.black,
+    shadowOffset: { width: 0, height: 0 },
+    shadowOpacity: 0.25,
+    shadowRadius: 10,
+    elevation: 4,
+    padding: 5,
+  },
+  nameContainer: {
+    gap: vertical(4),
+    alignItems: "center",
+  },
+  listIcon: {
+    height: vertical(44),
+    width: vertical(44),
+    backgroundColor: colors.neutral500,
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: radius._16,
+    borderCurve: "continuous",
+  },
+  listItem: {
+    marginBottom: vertical(17),
+  },
+  accountOptions: {
+    marginTop: spacingY._35,
+  },
+  flexRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: spacingX._10,
+  },
+});

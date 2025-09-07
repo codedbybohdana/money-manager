@@ -6,16 +6,16 @@
 import { horizontal, vertical } from "@/utils/styling";
 
 export const colors = {
-  primary: "#a3e635",
+  primary: "#8cd21c",
   primaryLight: "#0ea5e9",
   primaryDark: "#0369a1",
-  text: "#fff",
+  text: "#000",
   textLight: "#e5e5e5",
   textLighter: "#d4d4d4",
   white: "#fff",
   black: "#000",
   rose: "#ef4444",
-  green: "#16a34a",
+  green: "#0ea531",
   neutral50: "#fafafa",
   neutral100: "#f5f5f5",
   neutral200: "#e5e5e5",

@@ -5,11 +5,11 @@ import { Image, StyleSheet, View } from "react-native";
 
 const Index = () => {
   const router = useRouter();
-  useEffect(() => {
-    setTimeout(() => {
-      router.push("../(auth)/welcome");
-    }, 2000);
-  }, []);
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     router.push("../(auth)/welcome");
+  //   }, 2000);
+  // }, []);
   return (
     <View style={styles.container}>
       <Image
@@ -26,13 +26,12 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: colors.neutral100,
+    backgroundColor: colors.textLight,
     gap: 20,
   },
   logo: {
     height: "20%",
     aspectRatio: 1,
-    // width: "50%",
   },
 });
 export default Index;
