@@ -1,27 +1,19 @@
-import {
-  ScrollView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from "react-native";
-import React, { useEffect } from "react";
 import ScreenWrapper from "@/components/ScreenWrapper";
 import Typo from "@/components/Typo";
-import { StatusBar } from "expo-status-bar";
-import { colors, radius, spacingX, spacingY } from "@/constants/theme";
+import { colors, spacingX, spacingY } from "@/constants/theme";
+import { vertical } from "@/utils/styling";
 import * as Icons from "phosphor-react-native";
-import { horizontal, vertical } from "@/utils/styling";
+import React from "react";
+import { ScrollView, StyleSheet, View } from "react-native";
 //import HomeCard from "@/components/HomeCard";
 import Button from "@/components/Button";
-import { signOut } from "firebase/auth";
 import { auth } from "@/config/firebase";
 import { useAuth } from "@/contexts/authContext";
-import { Router, useRouter } from "expo-router";
+import { useRouter } from "expo-router";
+import { signOut } from "firebase/auth";
 //import TransactionList from "@/components/TransactionList";
 import { limit, orderBy, where } from "firebase/firestore";
 //import useFetchData from "@/hooks/useFetchData";
-import { TransactionType } from "@/types";
 //mport { fetchWeeklyStats } from "@/services/transactionService";
 
 const Home = () => {
@@ -47,7 +39,6 @@ const Home = () => {
   return (
     <ScreenWrapper>
       <View style={styles.container}>
-
         {/* header */}
         <View style={styles.header}>
           <View style={{ gap: 4 }}>

@@ -8,6 +8,8 @@ export const uploadFileToCloudinary = async (
   folderName: string
 ): Promise<ResponseType> => {
   try {
+    // Prepare the file data
+
     if (typeof file === "string") {
       return {
         success: true,
@@ -25,14 +27,13 @@ export const uploadFileToCloudinary = async (
       formData.append("upload_preset", CLOUDINARY_UPLOAD_PRESET);
       formData.append("folder", folderName);
 
-        const response = await axios.post(CLOUDINARY_UPLOAD_URL, formData, {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        });
+      const response = await axios.post(CLOUDINARY_UPLOAD_URL, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
 
-        // console.log("Cloudinary response:", response?.data);
-
+      // Return the success response
       return {
         success: true,
         data: response.data.secure_url,

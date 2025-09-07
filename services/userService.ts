@@ -24,13 +24,12 @@ export const updateUser = async (
       updatedData.image = imageUploadResponse.data;
     }
 
-    // Створюється посилання на документ користувача у Firestore
     const userRef = doc(db, "users", uid);
 
-    // Оновлюються дані користувача у базі
+    // Update the user document with the provided updatedData
     await updateDoc(userRef, updatedData);
 
-    // Fetch the updated user data Отримуються оновлені дані користувача
+    // Fetch the updated user data
     const updatedUserDoc = await getDoc(userRef);
 
     return {
@@ -38,17 +37,17 @@ export const updateUser = async (
       msg: "Updated successfully",
     };
 
-    if (updatedUserDoc.exists()) {
-      return {
-        success: true,
-        data: updatedUserDoc.data(),
-      };
-    } else {
-      return {
-        success: false,
-        msg: "User not found",
-      };
-    }
+    // if (updatedUserDoc.exists()) {
+    //   return {
+    //     success: true,
+    //     data: updatedUserDoc.data(),
+    //   };
+    // } else {
+    //   return {
+    //     success: false,
+    //     msg: "User not found",
+    //   };
+    // }
   } catch (error: any) {
     console.error("Error updating user:", error);
     return {
