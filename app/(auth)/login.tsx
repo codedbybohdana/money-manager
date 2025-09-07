@@ -10,7 +10,6 @@ import * as Icons from "phosphor-react-native";
 import React, { useRef } from "react";
 import { Alert, Pressable, StyleSheet, View } from "react-native";
 import ScreenWrapper from "../../components/ScreenWrapper";
-//import { useAuth } from "@/contexts/authContext";
 
 const Login = () => {
   const router = useRouter();

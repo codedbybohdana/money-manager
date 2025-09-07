@@ -8,8 +8,10 @@ import {
 } from "firebase/auth";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import React, { createContext, useContext, useEffect, useState } from "react";
-
 const AuthContext = createContext<AuthContextType | null>(null);
+
+// "контекст" — тобто місце, де зберігається інформація про поточного користувача і функції для роботи з ним
+// Він дозволяє зберігати інформацію про поточного користувача і ділитися нею між різними екранами
 
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   children,

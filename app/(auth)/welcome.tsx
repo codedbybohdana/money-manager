@@ -6,14 +6,12 @@ import { vertical } from "@/utils/styling";
 import { useRouter } from "expo-router";
 import React from "react";
 import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
-// import { useAuth } from "@/contexts/authContext";
 
 const WelcomePage = () => {
   const router = useRouter();
   return (
     <ScreenWrapper>
       <View style={styles.container}>
-        {/* login & image */}
         <View>
           <TouchableOpacity
             onPress={() => router.push("/(auth)/login")}

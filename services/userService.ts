@@ -8,28 +8,29 @@ export const updateUser = async (
   updatedData: UserDataType
 ): Promise<ResponseType> => {
   try {
-    // if (updatedData.image && updatedData?.image?.uri) {
-    //   const imageUploadResponse = await uploadFileToCloudinary(
-    //     updatedData.image,
-    //     "users"
-    //   );
+    if (updatedData.image && updatedData?.image?.uri) {
+      const imageUploadResponse = await uploadFileToCloudinary(
+        updatedData.image,
+        "users"
+      );
 
-    //   if (!imageUploadResponse.success) {
-    //     return {
-    //       success: false,
-    //       msg: imageUploadResponse.msg || "Failed to upload image",
-    //     };
-    //   }
+      if (!imageUploadResponse.success) {
+        return {
+          success: false,
+          msg: imageUploadResponse.msg || "Failed to upload image",
+        };
+      }
 
-    //   updatedData.image = imageUploadResponse.data;
-    // }
+      updatedData.image = imageUploadResponse.data;
+    }
 
+    // Створюється посилання на документ користувача у Firestore
     const userRef = doc(db, "users", uid);
 
-    // Update the user document with the provided updatedData
+    // Оновлюються дані користувача у базі
     await updateDoc(userRef, updatedData);
 
-    // Fetch the updated user data
+    // Fetch the updated user data Отримуються оновлені дані користувача
     const updatedUserDoc = await getDoc(userRef);
 
     return {
@@ -37,17 +38,17 @@ export const updateUser = async (
       msg: "Updated successfully",
     };
 
-    // if (updatedUserDoc.exists()) {
-    //   return {
-    //     success: true,
-    //     data: updatedUserDoc.data(),
-    //   };
-    // } else {
-    //   return {
-    //     success: false,
-    //     msg: "User not found",
-    //   };
-    // }
+    if (updatedUserDoc.exists()) {
+      return {
+        success: true,
+        data: updatedUserDoc.data(),
+      };
+    } else {
+      return {
+        success: false,
+        msg: "User not found",
+      };
+    }
   } catch (error: any) {
     console.error("Error updating user:", error);
     return {
