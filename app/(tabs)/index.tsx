@@ -1,96 +1,27 @@
 import ScreenWrapper from "@/components/ScreenWrapper";
 import Typo from "@/components/Typo";
 import { colors, spacingX, spacingY } from "@/constants/theme";
-import { vertical } from "@/utils/styling";
-import * as Icons from "phosphor-react-native";
-import React from "react";
-import { ScrollView, StyleSheet, View } from "react-native";
-//import HomeCard from "@/components/HomeCard";
-import Button from "@/components/Button";
-import { auth } from "@/config/firebase";
 import { useAuth } from "@/contexts/authContext";
+import { vertical } from "@/utils/styling";
 import { useRouter } from "expo-router";
-import { signOut } from "firebase/auth";
-//import TransactionList from "@/components/TransactionList";
-import { limit, orderBy, where } from "firebase/firestore";
-//import useFetchData from "@/hooks/useFetchData";
-//mport { fetchWeeklyStats } from "@/services/transactionService";
+import React from "react";
+import { StyleSheet, View } from "react-native";
 
 const Home = () => {
   const { user } = useAuth();
   const router = useRouter();
-
-  const constraints = [
-    where("uid", "==", user?.uid), // Filter by user ID
-    orderBy("date", "desc"), // Order by creation date in descending order
-    limit(30), // Limit the results to 50 transactions
-  ];
-
-  // Use the useFetchData hook with the 'transactions' collection and constraints
-  // const {
-  //   data: recentTransactions,
-  //   loading: transactionsLoading,
-  //   error,
-  // } = useFetchData<TransactionType>("transactions", constraints);
-
-  const logout = async () => {
-    await signOut(auth);
-  };
+  
   return (
     <ScreenWrapper>
       <View style={styles.container}>
         {/* header */}
         <View style={styles.header}>
           <View style={{ gap: 4 }}>
-            {/* <Typo size={16} color={colors.neutral400}>
-              Hi,
-            </Typo> */}
             <Typo fontWeight={"500"} size={20}>
               {user?.name || " "}
             </Typo>
           </View>
-          {/* <TouchableOpacity
-            // onPress={() => router.push("/(modals)/searchModal")}
-            style={styles.searchIcon}
-          >
-            <Icons.MagnifyingGlass
-              size={vertical(22)}
-              color={colors.neutral200}
-              weight="bold"
-            />
-          </TouchableOpacity> */}
         </View>
-
-        <ScrollView
-          contentContainerStyle={styles.scrollViewStyle}
-          showsVerticalScrollIndicator={false}
-        >
-          {/* card */}
-          {/* <View>
-            <HomeCard />
-          </View> */}
-
-          {/* <TransactionList
-            title={"Recent Transactions"}
-            loading={transactionsLoading}
-            data={recentTransactions}
-            emptyListMessage="No Transactions added yet!"
-          /> */}
-
-          {/* <Button onPress={logout}>
-            <Typo color={colors.black}>Logout</Typo>
-          </Button> */}
-        </ScrollView>
-        <Button
-          // onPress={() => router.push("/(modals)/transactionModal")}
-          style={styles.floatingButton}
-        >
-          <Icons.PlusIcon
-            color={colors.black}
-            weight="bold"
-            size={vertical(24)}
-          />
-        </Button>
       </View>
     </ScreenWrapper>
   );

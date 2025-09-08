@@ -60,7 +60,6 @@ const ProfileModal = () => {
   };
 
   const onPickImage = async () => {
-    //No permissions request is necessary for launching the image library
     let result: ImagePicker.ImagePickerResult =
       await ImagePicker.launchImageLibraryAsync({
         mediaTypes: ["images"],
