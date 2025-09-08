@@ -36,18 +36,6 @@ export const updateUser = async (
       success: true,
       msg: "Updated successfully",
     };
-
-    // if (updatedUserDoc.exists()) {
-    //   return {
-    //     success: true,
-    //     data: updatedUserDoc.data(),
-    //   };
-    // } else {
-    //   return {
-    //     success: false,
-    //     msg: "User not found",
-    //   };
-    // }
   } catch (error: any) {
     console.error("Error updating user:", error);
     return {

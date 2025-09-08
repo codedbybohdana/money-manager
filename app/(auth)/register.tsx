@@ -31,7 +31,7 @@ const Register = () => {
     );
     console.log("Register button pressed", res);
     if (!res.success) {
-      Alert.alert("Register", res.msg);
+      Alert.alert("Register error:", res.msg);
     }
   };
 

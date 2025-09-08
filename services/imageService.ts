@@ -8,8 +8,6 @@ export const uploadFileToCloudinary = async (
   folderName: string
 ): Promise<ResponseType> => {
   try {
-    // Prepare the file data
-
     if (typeof file === "string") {
       return {
         success: true,
@@ -33,7 +31,6 @@ export const uploadFileToCloudinary = async (
         },
       });
 
-      // Return the success response
       return {
         success: true,
         data: response.data.secure_url,

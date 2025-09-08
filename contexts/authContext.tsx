@@ -8,6 +8,8 @@ import {
 } from "firebase/auth";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import React, { createContext, useContext, useEffect, useState } from "react";
+
+
 const AuthContext = createContext<AuthContextType | null>(null);
 
 // "контекст" — тобто місце, де зберігається інформація про поточного користувача і функції для роботи з ним
@@ -21,7 +23,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
-      console.log("got user in auth state changed: ", firebaseUser);
+      //console.log("got user in auth state changed: ", firebaseUser);
       if (firebaseUser) {
         setUser({
           uid: firebaseUser.uid,

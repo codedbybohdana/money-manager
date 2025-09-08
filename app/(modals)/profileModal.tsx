@@ -44,7 +44,7 @@ const ProfileModal = () => {
 
   const onSubmit = async () => {
     let { name, image } = userData;
-    if (!name.trim()) {
+    if (!name.trim() || !image) {
       Alert.alert("User", "Please fill the name");
       return;
     }

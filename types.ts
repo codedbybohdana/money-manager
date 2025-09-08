@@ -1,4 +1,3 @@
-// phosphor-react-native - бібліотека іконок
 import { Href } from "expo-router";
 import { Firestore, Timestamp } from "firebase/firestore";
 import { Icon } from "phosphor-react-native";

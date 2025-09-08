@@ -41,18 +41,13 @@ const WalletListItem = ({
 
         <View style={styles.nameContainer}>
           <Typo size={16}>{item.name}</Typo>
-          <Typo size={14} color={colors.neutral400}>
-            ${item?.amount?.toFixed(2) || 0}
-          </Typo>
         </View>
 
-        {/* <TouchableOpacity> */}
         <Icons.CaretRightIcon
           size={vertical(20)}
           weight="bold"
           color={colors.black}
         />
-        {/* </TouchableOpacity> */}
       </TouchableOpacity>
     </View>
   );

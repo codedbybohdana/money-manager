@@ -20,7 +20,6 @@ const WalletModal = () => {
     image: null,
   });
   const { user } = useAuth();
-  const [loading, setLoading] = useState(false);
   const router = useRouter();
   const oldWallet: { name: string; image: string; id?: string } =
     useLocalSearchParams();
@@ -43,13 +42,11 @@ const WalletModal = () => {
   const onSubmit = async () => {
     let { name, image } = wallet;
 
-    if (loading) return;
     if (!name.trim() || !image) {
       Alert.alert("Wallet", "Please fill all the fields!");
       return;
     }
 
-    setLoading(true);
     let data: WalletType = {
       name,
       image,
@@ -58,7 +55,6 @@ const WalletModal = () => {
     if (oldWallet.id) data.id = oldWallet.id;
 
     const res = await createOrUpdateWallet(data);
-    setLoading(false);
     console.log("res: ", res);
     if (res.success) {
       router.back();
@@ -69,9 +65,7 @@ const WalletModal = () => {
 
   const onDelete = async () => {
     if (!oldWallet?.id) return;
-    setLoading(true);
     const res = await deleteWallet(oldWallet.id as string);
-    setLoading(false);
 
     if (res.success) {
       router.back();
@@ -83,7 +77,7 @@ const WalletModal = () => {
   const showDeleteAlert = () => {
     Alert.alert(
       "Confirm",
-      "Are you sure you want to do this?\nThis will remove all the transactions related to this wallet!",
+      "Are you sure you want to do this?",
       [
         {
           text: "Cancel",

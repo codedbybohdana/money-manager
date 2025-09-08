@@ -68,6 +68,7 @@ const Profile = () => {
     }
     if (item?.routeName) router.push(item?.routeName);
   };
+  
   return (
     <ScreenWrapper>
       <View style={styles.container}>
