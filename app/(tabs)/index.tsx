@@ -1,3 +1,4 @@
+import HomeCard from "@/components/HomeCard";
 import ScreenWrapper from "@/components/ScreenWrapper";
 import Typo from "@/components/Typo";
 import { colors, spacingX, spacingY } from "@/constants/theme";
@@ -22,6 +23,12 @@ const Home = () => {
             </Typo>
           </View>
         </View>
+
+        <View>
+          <HomeCard />
+        </View>
+
+
       </View>
     </ScreenWrapper>
   );
@@ -36,10 +43,9 @@ const styles = StyleSheet.create({
     marginTop: vertical(8),
   },
   header: {
-    flexDirection: "row",
-    justifyContent: "space-between",
     alignItems: "center",
-    marginBottom: spacingY._10,
+    marginBottom: spacingY._20,
+    margin: spacingY._20,
   },
   searchIcon: {
     backgroundColor: colors.neutral700,
