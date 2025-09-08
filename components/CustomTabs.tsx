@@ -12,13 +12,6 @@ function CustomTabs({ state, descriptors, navigation }: BottomTabBarProps) {
         color={isFocused ? colors.primary : colors.neutral900}
       />
     ),
-    statistics: (isFocused: boolean) => (
-      <Icons.ChartBarIcon
-        size={vertical(30)}
-        weight={isFocused ? "fill" : "regular"}
-        color={isFocused ? colors.primary : colors.neutral900}
-      />
-    ),
     wallet: (isFocused: boolean) => (
       <Icons.WalletIcon
         size={vertical(30)}

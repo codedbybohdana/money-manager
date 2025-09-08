@@ -1,50 +1,110 @@
-# Welcome to your Expo app 👋
+# Money Manager
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+## Opis
 
-## Get started
+Money Manager to aplikacja mobilna do prostego zarządzania finansami osobistymi. Pozwala tworzyć portfele, sprawdzać saldo, dodawać przychody i wydatki oraz edytować profil użytkownika.
 
-1. Install dependencies
+---
+
+## Główne funkcje
+
+- Rejestracja i logowanie użytkownika (Firebase)
+- Strona główna z saldem portfela
+- Dodawanie przychodu i wydatku bez szczegółowych transakcji
+- Zarządzanie portfelami (dodawanie, edycja, usuwanie)
+- Edycja profilu użytkownika
+- Wybór i przesyłanie zdjęcia (Image Picker, Cloudinary)
+- Responsywny design na różne urządzenia
+- Nawigacja między ekranami (expo-router)
+- Przechowywanie sesji użytkownika (AsyncStorage)
+
+---
+
+## Architektura
+
+- **Context API** – globalny stan użytkownika i autoryzacji
+- **Firebase** – przechowywanie danych i autoryzacja
+- **Expo Router** – nawigacja między ekranami
+- **Cloudinary** – przechowywanie obrazów
+- **Responsywność** – Flexbox, Dimensions API, własne funkcje skalowania
+
+---
+
+## Instalacja i uruchomienie
+
+1. Sklonuj repozytorium:
+
+   ```bash
+   git clone <repo-url>
+   cd money-manager-1
+   ```
+
+2. Zainstaluj zależności:
 
    ```bash
    npm install
    ```
 
-2. Start the app
+3. Uruchom aplikację:
 
    ```bash
-   npx expo start
+   npm start
    ```
 
-In the output, you'll find options to open the app in a
+4. Uruchom na Android/iOS:
+   ```bash
+   npm run android
+   npm run ios
+   ```
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+---
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+## Technologie
 
-## Get a fresh project
+- React Native
+- Expo
+- TypeScript
+- Firebase (Auth, Firestore)
+- Cloudinary
+- AsyncStorage
+- expo-image-picker
+- expo-router
 
-When you're ready, run:
+---
 
-```bash
-npm run reset-project
-```
+## Struktura projektu
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+- `/app` – ekrany aplikacji (autoryzacja, zakładki, modale)
+- `/components` – komponenty UI
+- `/contexts` – globalne konteksty (auth)
+- `/services` – obsługa Firebase, Cloudinary
+- `/hooks` – własne hooki
+- `/constants` – style, stałe
+- `/utils` – funkcje pomocnicze
 
-## Learn more
+---
 
-To learn more about developing your project with Expo, look at the following resources:
+## Funkcje natywne
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+- Wybór i przesyłanie zdjęć (kamera/galeria)
+- Przechowywanie sesji użytkownika (AsyncStorage)
 
-## Join the community
+---
 
-Join our community of developers creating universal apps.
+## Dokumentacja kodu
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+- Komentarze w najważniejszych plikach
+- Typy danych opisane w `types.ts`
+
+---
+
+## Wymagania
+
+- Node.js >= 18
+- Expo CLI
+
+---
+
+## Autor
+
+Bohdana
